@@ -1,6 +1,7 @@
  
   var bookmarkNameInput = document.getElementById("bookmark-name");
   var bookmarkUrlInput = document.getElementById("bookmark-url");
+    var searchlInput = document.getElementById("search");
   var updateBtn = document.getElementById("btn-update");
   var submitBtn = document.getElementById("btn-submit");
   var index;
@@ -165,6 +166,24 @@ var urlPattern= new RegExp(urlPatternString, 'i');
     }
 
     
+  }
+  function searchByName(){
+    var term=searchlInput.value;
+   var cartoona = "";
+    for (var i = 0; i < websiteList.length; i++) {
+      if(websiteList[i].name.toLowerCase().includes(term.toLowerCase())){
+      cartoona += `
+        <tr>
+          <th>${i + 1}</th>
+          <td>${websiteList[i].name}</td>
+          <td><a href="${websiteList[i].url}" target="_blank" id="btn-visit">${websiteList[i].url} </a></td>
+          <td><button class="btn btn-danger py-1 px-3" onclick="deleteWebsite(${i})"><i class="fa-solid fa-trash"></i></button></td>
+          <td><button class="btn btn-warning py-1 px-3" onclick="setUpdateInfo(${i})"><i class="fa-solid fa-pen-to-square"></i></button></td>
+        </tr>
+      `;
+    }}
+    document.getElementById("text").innerHTML = cartoona;
+  
   }
 
   function clearInput() {
